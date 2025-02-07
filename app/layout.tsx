@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type {Metadata} from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import Header from "@/components/Header";
+
 const pretendard = localFont({
   src: "../fonts/PretendardVariable.woff2",
   display: "swap",
@@ -14,18 +15,18 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+                                     children,
+                                   }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${pretendard.variable} antialiased font-pretendard`}
-      >
-      <Header/>
-        {children}
-      </body>
+    <body
+      className={`${pretendard.variable} antialiased font-pretendard max-w-6xl mx-auto`}
+    >
+    <Header/>
+    {children}
+    </body>
     </html>
   );
 }
