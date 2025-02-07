@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const Header: React.FC = () => {
+export default function Header(){
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -37,5 +37,3 @@ const Header: React.FC = () => {
     </div>
   );
 }
-
-export default Header;
