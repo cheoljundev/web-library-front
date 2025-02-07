@@ -30,7 +30,7 @@ export default function Header(){
         </div>
       </div>
       <div className="navbar-center">
-        <a className="btn btn-ghost text-xl">온라인 도서관</a>
+        <Link className="btn btn-ghost text-xl" href="/">온라인 도서관</Link>
       </div>
       <div className="navbar-end">
       </div>
