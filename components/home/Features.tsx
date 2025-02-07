@@ -9,19 +9,15 @@ export default function Features() {
   ]
 
   return (
-    <section className="py-20 bg-base-100">
-      <div className="container mx-auto px-4">
+    <section className="py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-12">주요 기능</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="card bg-base-200 shadow-xl">
-              <figure className="px-10 pt-10">
-                <feature.icon className="w-20 h-20 text-blue-500"/>
-              </figure>
-              <div className="card-body items-center text-center">
-                <h3 className="card-title">{feature.title}</h3>
-                <p>{feature.description}</p>
-              </div>
+            <div key={index} className="text-center">
+              <feature.icon className="mx-auto h-12 w-12 text-blue-600 mb-4"/>
+              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <p className="text-gray-600">{feature.description}</p>
             </div>
           ))}
         </div>

@@ -13,7 +13,8 @@ export default function HowItWorks() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step) => (
             <div key={step.number} className="text-center">
-              <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+              <div
+                className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                 {step.number}
               </div>
               <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
