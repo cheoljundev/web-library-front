@@ -34,8 +34,8 @@ export default function BooksClient({ initialBooks }: BooksClientProps) {
   const handleSearch = (query: { title: string; isbn: string; author: string }) => {
     const filteredBooks = initialBooks.filter(
       (book) =>
-        book.title.toLowerCase().includes(query.title.toLowerCase()) &&
-        book.isbn.includes(query.isbn) &&
+        book.title.toLowerCase().includes(query.title.toLowerCase()) ||
+        book.isbn.includes(query.isbn) ||
         book.author.toLowerCase().includes(query.author.toLowerCase()),
     )
     setBooks(filteredBooks)

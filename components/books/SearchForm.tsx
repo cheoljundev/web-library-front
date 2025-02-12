@@ -1,38 +1,71 @@
 "use client"
 
-import { useState } from "react"
+import {useForm} from "react-hook-form";
+import z from "zod";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {Button} from "@/components/ui/button";
+import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
+import {Input} from "@/components/ui/input";
 
 interface SearchFormProps {
   onSearch: (query: { title: string; isbn: string; author: string }) => void
 }
 
-export default function SearchForm({ onSearch }: SearchFormProps) {
-  const [title, setTitle] = useState("")
-  const [isbn, setIsbn] = useState("")
-  const [author, setAuthor] = useState("")
+const schema = z.object({
+  title: z.string().min(1, "책 제목은 필수입니다."),
+  isbn: z.string().min(1, "ISBN은 필수입니다."),
+  author: z.string().min(1, "저자 이름은 필수입니다."),
+});
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    onSearch({ title, isbn, author })
+export default function SearchForm({onSearch}: SearchFormProps) {
+
+  const form = useForm<z.infer<typeof schema>>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      title: '',
+      isbn: '',
+      author: '',
+    },
+  });
+
+  function onSubmit(values: z.infer<typeof schema>) {
+    onSearch(values);
+    console.log(values)
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="flex flex-col gap-2">
-        <input type="text" placeholder="책 제목"
-               className="input input-bordered w-full"
-               value={title} onChange={(e) => setTitle(e.target.value)} />
-        <input type="text" placeholder="ISBN"
-               className="input input-bordered w-full"
-               value={isbn} onChange={(e) => setIsbn(e.target.value)} />
-        <input type="text" placeholder="저자"
-               className="input input-bordered w-full"
-               value={author} onChange={(e) => setAuthor(e.target.value)} />
-      </div>
-      <button type="submit" className="btn w-1/6 btn-neutral mx-auto block">
-        검색
-      </button>
-    </form>
+    <Form {...form}>
+      <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
+        <FormField control={form.control} name="title" render={({field}) => (
+          <FormItem>
+            <FormLabel>책 이름</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage/>
+          </FormItem>
+        )}/>
+        <FormField control={form.control} name="isbn" render={({field}) => (
+          <FormItem>
+            <FormLabel>ISBN</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage/>
+          </FormItem>
+        )}/>
+        <FormField control={form.control} name="author" render={({field}) => (
+          <FormItem>
+            <FormLabel>저자</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage/>
+          </FormItem>
+        )}/>
+        <Button type="submit">검색</Button>
+      </form>
+    </Form>
   )
 }
 
