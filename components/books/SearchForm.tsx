@@ -8,7 +8,7 @@ import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, Form
 import {Input} from "@/components/ui/input";
 
 interface SearchFormProps {
-  onSearch: (query: { title: string; isbn: string; author: string }) => void
+  onSearch: (query: z.infer<typeof schema>) => void
 }
 
 const schema = z.object({
