@@ -3,7 +3,14 @@
 import { useState } from "react"
 import SearchForm from "@/components/books/SearchForm";
 import BookList from "@/components/books/BookList"
-import {Button} from "@/components/ui/button"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink, PaginationNext,
+  PaginationPrevious
+} from "@/components/ui/pagination";
 
 interface Book {
   id: string
@@ -43,16 +50,31 @@ export default function BooksClient({ initialBooks }: BooksClientProps) {
       <div className="mt-12">
         <h2 className="text-2xl font-semibold mb-4">검색 결과</h2>
         <BookList books={paginatedBooks}/>
-        <div className="flex justify-center my-8">
-          <div className="join mx-auto">
-            <button className="join-item btn">«</button>
-            <button className="join-item btn">1</button>
-            <button className="join-item btn btn-active">2</button>
-            <button className="join-item btn">3</button>
-            <button className="join-item btn">4</button>
-            <button className="join-item btn">»</button>
-          </div>
-        </div>
+        <Pagination className="my-10">
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious href="#"/>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">1</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">2</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">3</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">50</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext href="#" />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </div>
     </>
   )
