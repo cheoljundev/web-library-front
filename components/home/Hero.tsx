@@ -1,4 +1,5 @@
 import Link from "next/link";
+import {Button} from "@/components/ui/button";
 
 export default function Hero() {
   return (
@@ -8,7 +9,9 @@ export default function Hero() {
           <p className="text-xl mb-8">
             집에서 편하게 도서를 검색하고 대출 신청하세요. 언제 어디서나 도서관이 여러분 곁에 있습니다.
           </p>
-          <Link href="/books" className="btn btn-neutral">지금 시작하기</Link>
+          <Button asChild>
+            <Link href="/books">지금 시작하기</Link>
+          </Button>
         </div>
       </section>
   )
