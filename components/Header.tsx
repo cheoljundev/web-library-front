@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Header(){
   return (
-    <div className="sticky top-0 z-[1] bg-base-100">
+    <header className="sticky top-0 z-[1] bg-base-100">
       <div className="navbar mx-auto max-w-7xl">
         <div className="navbar-start">
           <div className="dropdown">
@@ -36,7 +36,6 @@ export default function Header(){
         <div className="navbar-end">
         </div>
       </div>
-
-    </div>
+    </header>
   );
 }

@@ -11,9 +11,9 @@ interface Book {
   coverUrl: string
 }
 
-export default function BookCard({ book }: { book: Book }) {
+export default function BookCard({ book, admin }: { book: Book, admin:boolean }) {
   return (
-    <Card className="block sm:flex md:block lg:flex items-center justify-around">
+    <Card className="block sm:flex md:block lg:flex items-center justify-around p-4">
       <CardHeader className="flex-row">
         <img
           src={book.coverUrl}
@@ -27,10 +27,13 @@ export default function BookCard({ book }: { book: Book }) {
         <CardDescription>isbn : {book.isbn}</CardDescription>
         <CardDescription>{book.description}</CardDescription>
       </CardContent>
-      <CardFooter className="flex justify-between">
+      <CardFooter className="flex justify-start sm:justify-between md:justify-start lg:justify-between gap-2">
         <Button asChild>
           <Link href={`/books/${book.id}`}>자세히</Link>
         </Button>
+        {admin && (
+          <Button variant="outline">수정</Button>
+        )}
       </CardFooter>
     </Card>
   )

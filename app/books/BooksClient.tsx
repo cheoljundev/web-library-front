@@ -23,11 +23,12 @@ interface Book {
 
 interface BooksClientProps {
   initialBooks: Book[]
+  admin: boolean
 }
 
 const ITEMS_PER_PAGE = 10
 
-export default function BooksClient({ initialBooks }: BooksClientProps) {
+export default function BooksClient({ initialBooks, admin }: BooksClientProps) {
   const [books, setBooks] = useState(initialBooks)
   const [currentPage, setCurrentPage] = useState(1)
 
@@ -49,7 +50,7 @@ export default function BooksClient({ initialBooks }: BooksClientProps) {
       <SearchForm onSearch={handleSearch} />
       <div className="mt-12">
         <h2 className="text-2xl font-semibold mb-4">검색 결과</h2>
-        <BookList books={paginatedBooks}/>
+        <BookList books={paginatedBooks} admin={admin}/>
         <Pagination className="my-10">
           <PaginationContent>
             <PaginationItem>
