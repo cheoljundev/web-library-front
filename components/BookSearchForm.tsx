@@ -17,7 +17,7 @@ const schema = z.object({
   author: z.string().min(1, "저자 이름은 필수입니다."),
 });
 
-export default function SearchForm({onSearch}: SearchFormProps) {
+export default function BookSearchForm({onSearch}: SearchFormProps) {
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),

@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import SearchForm from "@/components/books/SearchForm";
-import BookList from "@/components/books/BookList"
+import BookSearchForm from "@/components/BookSearchForm";
+import BookList from "@/components/BookList"
 import {
   Pagination,
   PaginationContent,
@@ -47,7 +47,7 @@ export default function BooksClient({ initialBooks, admin }: BooksClientProps) {
 
   return (
     <>
-      <SearchForm onSearch={handleSearch} />
+      <BookSearchForm onSearch={handleSearch} />
       <div className="mt-12">
         <h2 className="text-2xl font-semibold mb-4">검색 결과</h2>
         <BookList books={paginatedBooks} admin={admin}/>
