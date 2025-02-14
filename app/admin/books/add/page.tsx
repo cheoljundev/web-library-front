@@ -1,5 +1,6 @@
 "use client";
 
+import {useEffect, useState} from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -51,6 +52,22 @@ export default function AdminBooksAddPage() {
       cover: null,
     },
   });
+
+  // 책 표지 파일 감지를 위해 form.watch 사용
+  const coverFiles = form.watch("cover");
+  const [coverPreview, setCoverPreview] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (coverFiles && coverFiles.length > 0) {
+      const file = coverFiles[0];
+      const previewURL = URL.createObjectURL(file);
+      setCoverPreview(previewURL);
+      // 컴포넌트 언마운트 시 URL 해제
+      return () => URL.revokeObjectURL(previewURL);
+    } else {
+      setCoverPreview(null);
+    }
+  }, [coverFiles]);
 
   return(
     <article className="max-w-7xl mx-auto px-4 py-8">
@@ -127,6 +144,15 @@ export default function AdminBooksAddPage() {
               </FormItem>
             )}
           />
+          {coverPreview && (
+            <div className="mt-4">
+              <img
+                src={coverPreview}
+                alt="책 표지 미리보기"
+                className="max-w-xs border rounded"
+              />
+            </div>
+          )}
           <Button type="submit">추가하기</Button>
         </form>
       </Form>
