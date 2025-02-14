@@ -24,14 +24,14 @@ export default function Header(){
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-              <li><Link href="/">홈</Link></li>
+              <li><Link href="/public">홈</Link></li>
               <li><Link href="/books">도서 목록</Link></li>
               <li><Link href="/admin">관리자</Link></li>
             </ul>
           </div>
         </div>
         <div className="navbar-center">
-          <Link className="btn btn-ghost text-xl" href="/">온라인 도서관</Link>
+          <Link className="btn btn-ghost text-xl" href="/public">온라인 도서관</Link>
         </div>
         <div className="navbar-end">
         </div>

@@ -1,4 +1,4 @@
-import BooksClient from "./BooksClient"
+import BooksClient from "@/components/books/BooksClient"
 
 // 더미 데이터
 const dummyBooks = [
@@ -33,7 +33,7 @@ export default function BooksPage() {
   return (
     <main className="container mx-auto max-w-7xl px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">도서 검색</h1>
-      <BooksClient initialBooks={dummyBooks} />
+      <BooksClient initialBooks={dummyBooks} admin={false} />
     </main>
   )
 }

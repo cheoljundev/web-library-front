@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import BookSearchForm from "@/components/BookSearchForm";
-import BookList from "@/components/BookList"
+import BookSearchForm from "@/components/books/BookSearchForm";
+import BookList from "@/components/books/BookList"
 import {
   Pagination,
   PaginationContent,

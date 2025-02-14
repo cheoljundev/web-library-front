@@ -1,4 +1,4 @@
-import BooksClient from "@/app/books/BooksClient";
+import BooksClient from "@/components/books/BooksClient";
 
 // 더미 데이터
 const dummyBooks = [

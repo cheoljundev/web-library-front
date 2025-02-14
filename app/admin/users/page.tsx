@@ -2,8 +2,8 @@
 "use client";
 
 import { useState } from "react";
-import UserSearchForm, { SearchFormValues } from "./UserSearchForm";
-import UsersTable from "./UsersTable";
+import UserSearchForm, { SearchFormValues } from "@/components/admin/users/UserSearchForm";
+import UsersTable from "@/components/admin/users/UsersTable";
 
 interface User {
   id: number;
