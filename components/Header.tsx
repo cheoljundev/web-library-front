@@ -27,6 +27,8 @@ export default function Header(){
               <li><Link href="/">홈</Link></li>
               <li><Link href="/books">도서 목록</Link></li>
               <li><Link href="/admin">관리자</Link></li>
+              <li><Link href="/login">로그인</Link></li>
+              <li><Link href="/join">회원가입</Link></li>
             </ul>
           </div>
         </div>
