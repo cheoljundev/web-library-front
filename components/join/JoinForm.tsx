@@ -27,7 +27,7 @@ const joinSchema = z
       .nonempty({ message: "유효한 유저네임을 입력해주세요." })
       .min(5, { message: "유저네임은 최소 5자 이상이어야 합니다." }),
     password: z.string().min(5, { message: "비밀번호는 최소 5자 이상이어야 합니다." }),
-    confirmPassword: z.string(),
+    confirmPassword: z.string().min(5, { message: "비밀번호는 최소 5자 이상이어야 합니다." }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "비밀번호가 일치하지 않습니다.",
