@@ -55,9 +55,5 @@ export async function GET(request: Request) {
     content: books,
   }
 
-  console.log("Request URL:", request.url);
-  console.log("Parsed page:", page);
-  // console.log(bookPage);
-
   return NextResponse.json(bookPage);
 }
