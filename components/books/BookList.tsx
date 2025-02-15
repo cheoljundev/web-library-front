@@ -1,13 +1,5 @@
 import BookCard from "./BookCard"
-
-interface Book {
-  id: string
-  title: string
-  author: string
-  isbn: string
-  description: string
-  coverUrl: string
-}
+import {Book} from "@/types/Book";
 
 export default function BookList({ books, admin }: { books: Book[], admin:boolean }) {
   return (

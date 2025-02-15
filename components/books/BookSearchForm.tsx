@@ -8,23 +8,25 @@ import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/
 import {Input} from "@/components/ui/input";
 
 interface SearchFormProps {
-  onSearch: (query: z.infer<typeof schema>) => void
+  onSearch: (query: z.infer<typeof schema>) => void,
+  query: { bookName: string; isbn: string; author: string }
+
 }
 
 const schema = z.object({
-  title: z.string(),
+  bookName: z.string(),
   isbn: z.string(),
   author: z.string(),
 });
 
-export default function BookSearchForm({onSearch}: SearchFormProps) {
+export default function BookSearchForm({onSearch, query}: SearchFormProps) {
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
-      title: '',
-      isbn: '',
-      author: '',
+      bookName: query.bookName,
+      isbn: query.isbn,
+      author: query.author,
     },
   });
 
@@ -35,7 +37,7 @@ export default function BookSearchForm({onSearch}: SearchFormProps) {
   return (
     <Form {...form}>
       <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
-        <FormField control={form.control} name="title" render={({field}) => (
+        <FormField control={form.control} name="bookName" render={({field}) => (
           <FormItem>
             <FormLabel>책 이름</FormLabel>
             <FormControl>

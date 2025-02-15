@@ -9,12 +9,12 @@ export default function BookCard({ book, admin }: { book: Book, admin:boolean })
       <CardHeader className="flex-row">
         <img
           src={book.coverImage}
-          alt={`Cover of ${book.title}`}
+          alt={`Cover of ${book.bookName}`}
           className="max-h-[150px]"
         />
       </CardHeader>
       <CardContent className="lg:w-[300px]">
-        <CardTitle>{book.title}</CardTitle>
+        <CardTitle>{book.bookName}</CardTitle>
         <CardDescription>저자 : {book.author}</CardDescription>
         <CardDescription>isbn : {book.isbn}</CardDescription>
         <CardDescription>{book.description}</CardDescription>

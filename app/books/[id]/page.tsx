@@ -4,14 +4,7 @@ import { Button } from "@/components/ui/button"
 import {AspectRatio} from "@/components/ui/aspect-ratio";
 import axios from "axios";
 import config from "@/config";
-
-type Book = {
-  title: string
-  isbn: string
-  author: string
-  description: string
-  coverUrl: string
-}
+import {Book} from "@/types/Book";
 
 export default async function BookPage({ params }: { params: { id: string } }) {
   const host = config.host;
@@ -25,14 +18,14 @@ export default async function BookPage({ params }: { params: { id: string } }) {
             <AspectRatio ratio={3/4}>
               <Image
                 src={book.coverImage}
-                alt={`${book.title} 표지`}
+                alt={`${book.bookName} 표지`}
                 fill
                 className="object-cover rounded-lg shadow-lg"
               />
             </AspectRatio>
           </section>
           <section className="md:col-span-2">
-            <h1 className="text-3xl font-bold mb-4">{book.title}</h1>
+            <h1 className="text-3xl font-bold mb-4">{book.bookName}</h1>
             <p className="text-xl mb-4">저자: {book.author}</p>
             <p className="mb-4">ISBN: {book.isbn}</p>
             <h2 className="text-2xl font-semibold mb-2">책 소개</h2>

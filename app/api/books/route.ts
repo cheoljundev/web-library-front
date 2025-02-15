@@ -9,24 +9,27 @@ import config from "@/config";
 export async function GET(request: Request) {
 
   const url = config.apiUrl;
-  const { searchParams } = new URL(request.url);
+  const {searchParams} = new URL(request.url);
+  console.log(`searchParams : ${searchParams}`);
   const page = searchParams.get("page"); // query string의 page 값을 가져옵니다.
-  const currentPage : number = page ? parseInt(page, 10) - 1 : 0;
+  const bookName = searchParams.get("bookName") || '';
+  const isbn = searchParams.get("isbn") || '';
+  const author = searchParams.get("author") || '';
+  const currentPage: number = page ? parseInt(page, 10) - 1 : 0;
 
-  const response = await axios.get(`${url}/books?page=${currentPage}`);
+  const response = await axios.get(`${url}/books?page=${currentPage}&bookName=${bookName}&isbn=${isbn}&author=${author}`);
 
   const {
     first,
     last,
     totalPages,
-    content : books,
+    content: books,
   } = response.data;
 
   const {startPage, endPage, pageNumbers} = blockSize(5, currentPage, totalPages);
 
   books.map((book: Book) => {
     book.coverImage = `${config.apiUrl}${book.coverImage}`;
-
   });
 
   const bookPage: Page<Book> = {
