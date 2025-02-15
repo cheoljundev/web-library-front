@@ -19,13 +19,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import axios from "axios";
 
 const loginSchema = z.object({
   username: z.string()
-    .nonempty({ message: "유효한 유저네임을 입력해주세요." })
-    .min(5, { message: "유저네임은 최소 5자 이상이어야 합니다." }),
+    .nonempty({ message: "유저네임을 입력해주세요." }),
   password: z.string()
-    .min(5, { message: "비밀번호는 최소 5자 이상이어야 합니다." }),
+    .nonempty({ message: "비밀번호를 입력해주세요." }),
 });
 
 type LoginFormValues = z.infer<typeof loginSchema>;
@@ -39,9 +39,27 @@ export default function LoginForm() {
     },
   });
 
-  const onSubmit = (data: LoginFormValues) => {
-    console.log("로그인 데이터", data);
-    // 로그인 로직을 여기에 구현하세요.
+  const onSubmit = async (data: LoginFormValues) => {
+    try {
+      await axios.post(`/api/login`, data);
+      location.href = "/";
+    } catch (error: unknown) {
+      // AxiosError 타입인지 체크합니다.
+      if (axios.isAxiosError(error) && error.response) {
+        const errors = error.response.data;
+        if (errors["username"]) {
+          form.setError("username", { message: errors["username"] });
+        }
+        if (errors["password"]) {
+          form.setError("password", { message: errors["password"] });
+        }
+        if (errors["root"]) {
+          form.setError("root", { message: errors["root"] });
+        }
+      } else {
+        console.error("알 수 없는 에러", error);
+      }
+    }
   };
 
   return (
@@ -50,6 +68,12 @@ export default function LoginForm() {
         <CardTitle className="text-center">로그인</CardTitle>
       </CardHeader>
       <CardContent>
+        {/* 전역 에러 메시지 출력 */}
+        {form.formState.errors.root && (
+          <p className="text-red-500 text-center mb-4">
+            {form.formState.errors.root.message}
+          </p>
+        )}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
