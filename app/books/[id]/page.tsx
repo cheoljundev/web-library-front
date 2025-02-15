@@ -6,11 +6,12 @@ import axios from "axios";
 import config from "@/config";
 import {Book} from "@/types/Book";
 
-export default async function BookPage({ params }: { params: { id: string } }) {
+export default async function BookPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const host = config.host;
 
   try {
-    const {data: book} = await axios.get<Book>(`${host}/api/books/${params.id}`);
+    const {data: book} = await axios.get<Book>(`${host}/api/books/${id}`);
     return (
       <main className="container mx-auto px-4 py-8 max-w-7xl">
         <article className="grid md:grid-cols-3 gap-8">
