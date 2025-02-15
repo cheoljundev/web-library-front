@@ -13,11 +13,12 @@ export default function JoinPage() {
   };
 
   return (
-    <article className="py-8">
+    <article className="py-8 max-w-7xl mx-auto px-4">
+      <h1 className="text-3xl font-bold mb-8 text-center">회원 가입</h1>
       {
         !hasAgreed ?
-        <TermsOfService onAgree={handleAgree}/> :
-        <JoinForm/>
+          <TermsOfService onAgree={handleAgree}/> :
+          <JoinForm/>
       }
     </article>
   )
