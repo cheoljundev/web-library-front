@@ -9,29 +9,22 @@ import {
   TableCell,
   TableBody,
 } from "@/components/ui/table";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+import {Page} from "@/types/Pagination";
+import {User} from "@/types/User";
+import Pagination from "@/components/Pagination";
+import {useState} from "react";
 
-interface User {
-  id: number;
-  username: string;
-  roles: string[];
+
+function onEdit(id: number) {
+  console.log("수정 클릭", id);
 }
 
-interface UsersTableProps {
-  users: User[];
-  onEdit: (userId: number) => void;
-  onDelete: (userId: number) => void;
+function onDelete(id: number) {
+  console.log("삭제 클릭", id);
 }
 
-export default function UsersTable({ users, onEdit, onDelete }: UsersTableProps) {
+export default function UsersTable({ page }: { page: Page<User> }) {
+  const [users] = useState<User[]>(page.content);
   return (
     <>
       <div className="overflow-x-auto">
@@ -71,31 +64,7 @@ export default function UsersTable({ users, onEdit, onDelete }: UsersTableProps)
           </TableBody>
         </Table>
       </div>
-      <Pagination className="my-10">
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious href="#" />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">1</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">2</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">3</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">50</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationNext href="#" />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
+      <Pagination page={page} />
     </>
   );
 }

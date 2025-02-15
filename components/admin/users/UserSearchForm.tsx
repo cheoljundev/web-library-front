@@ -16,17 +16,17 @@ import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/u
 import { Button } from "@/components/ui/button";
 
 const searchFormSchema = z.object({
-  username: z.string().nonempty({ message: "Username은 필수 값입니다." }),
+  username: z.string(),
   role: z.enum(["DEFAULT", "ADMIN"]),
 });
 
 export type SearchFormValues = z.infer<typeof searchFormSchema>;
 
 interface UserSearchFormProps {
-  onSubmit: (data: SearchFormValues) => void;
+  onSubmitAction: (data: SearchFormValues) => void;
 }
 
-export default function UserSearchForm({ onSubmit }: UserSearchFormProps) {
+export default function UserSearchForm({ onSubmitAction }: UserSearchFormProps) {
   const form = useForm<SearchFormValues>({
     resolver: zodResolver(searchFormSchema),
     defaultValues: {
@@ -37,7 +37,7 @@ export default function UserSearchForm({ onSubmit }: UserSearchFormProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mb-6">
+      <form onSubmit={form.handleSubmit(onSubmitAction)} className="space-y-4 mb-6">
         <div className="flex flex-col md:flex-row gap-4">
           <FormField
             control={form.control}
