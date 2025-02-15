@@ -14,10 +14,10 @@ interface BooksClientProps {
 
 
 export default function BooksClient({ page, admin }: BooksClientProps) {
-  const [books, setBooks] = useState(page.content)
-  const [currentPage, setCurrentPage] = useState(1)
+  const [books] = useState(page.content)
 
   const handleSearch = (query: { title: string; isbn: string; author: string }) => {
+    location.href = `?title=${query.title}&isbn=${query.isbn}&author=${query.author}`
   }
 
   return (

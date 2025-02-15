@@ -12,9 +12,9 @@ interface SearchFormProps {
 }
 
 const schema = z.object({
-  title: z.string().min(1, "책 제목은 필수입니다."),
-  isbn: z.string().min(1, "ISBN은 필수입니다."),
-  author: z.string().min(1, "저자 이름은 필수입니다."),
+  title: z.string(),
+  isbn: z.string(),
+  author: z.string(),
 });
 
 export default function BookSearchForm({onSearch}: SearchFormProps) {
@@ -30,7 +30,6 @@ export default function BookSearchForm({onSearch}: SearchFormProps) {
 
   function onSubmit(values: z.infer<typeof schema>) {
     onSearch(values);
-    console.log(values)
   }
 
   return (
