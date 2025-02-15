@@ -31,7 +31,7 @@ const books = [
   })),
 ]
 
-export async function GET(request: Request, {params}: { params: { id: string } }) {
+export async function GET(request: Request) {
 
   const { searchParams } = new URL(request.url);
   const page = searchParams.get("page"); // query string의 page 값을 가져옵니다.
