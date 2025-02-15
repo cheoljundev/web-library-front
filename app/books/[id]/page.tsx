@@ -24,7 +24,7 @@ export default async function BookPage({ params }: { params: { id: string } }) {
           <section className="md:col-span-1">
             <AspectRatio ratio={3/4}>
               <Image
-                src={book.coverUrl}
+                src={book.coverImage}
                 alt={`${book.title} 표지`}
                 fill
                 className="object-cover rounded-lg shadow-lg"

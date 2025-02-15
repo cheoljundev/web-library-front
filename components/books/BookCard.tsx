@@ -1,22 +1,14 @@
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
-
-interface Book {
-  id: string
-  title: string
-  author: string
-  isbn: string
-  description: string
-  coverUrl: string
-}
+import {Book} from "@/types/Book";
 
 export default function BookCard({ book, admin }: { book: Book, admin:boolean }) {
   return (
     <Card className="block sm:flex md:block lg:flex items-center justify-around p-4">
       <CardHeader className="flex-row">
         <img
-          src={book.coverUrl}
+          src={book.coverImage}
           alt={`Cover of ${book.title}`}
           className="max-h-[150px]"
         />

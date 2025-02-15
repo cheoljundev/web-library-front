@@ -4,5 +4,5 @@ export type Book = {
   isbn: string
   author: string
   description: string
-  coverUrl: string
+  coverImage: string
 };

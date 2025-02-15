@@ -33,7 +33,7 @@ export default ({page}: { page: Page<any> }) => (
         )
       }
       <PaginationItem>
-        <PaginationLink href={`?page=${page.totalPages}`}>{page.totalPages}</PaginationLink>
+        <PaginationLink isActive={page.totalPages === page.currentPage} href={`?page=${page.totalPages}`}>{page.totalPages}</PaginationLink>
       </PaginationItem>
       {
         page.last ? null : (
