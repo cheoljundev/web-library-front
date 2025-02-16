@@ -1,7 +1,7 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import {useForm} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {
   Card,
@@ -9,8 +9,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import {Button} from "@/components/ui/button";
+import {Input} from "@/components/ui/input";
 import {
   Form,
   FormField,
@@ -19,15 +19,24 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import axios from "axios";
 
 const joinSchema = z
   .object({
     username: z
       .string()
-      .nonempty({ message: "유효한 유저네임을 입력해주세요." })
-      .min(5, { message: "유저네임은 최소 5자 이상이어야 합니다." }),
-    password: z.string().min(5, { message: "비밀번호는 최소 5자 이상이어야 합니다." }),
-    confirmPassword: z.string().min(5, { message: "비밀번호는 최소 5자 이상이어야 합니다." }),
+      .min(5, {message: "유저네임은 최소 5자 이상이어야 합니다."})
+      .refine(
+        (value) => /^[a-z][a-z0-9]*$/.test(value),
+        { message: "아이디는 첫 글자가 소문자 영문이어야 하며, 소문자 영문과 숫자만 올 수 있습니다." }
+      ),
+    password: z.string()
+      .min(5, {message: "비밀번호는 최소 5자 이상이어야 합니다."})
+      .refine(
+        (value) => /^\S+$/.test(value),
+        {message: "비밀번호는 공백을 포함할 수 없습니다."}
+      ),
+    confirmPassword: z.string().min(5, {message: "비밀번호는 최소 5자 이상이어야 합니다."}),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "비밀번호가 일치하지 않습니다.",
@@ -46,9 +55,27 @@ export default function JoinForm() {
     },
   });
 
-  const onSubmit = (data: JoinFormValues) => {
-    console.log("회원 가입 데이터", data);
-    // 회원 가입 로직을 여기에 구현하세요.
+  const onSubmit = async (data: JoinFormValues) => {
+    try {
+      await axios.post(`/api/join`, data);
+      location.href = "/join/done";
+    } catch (error) {
+      // AxiosError 타입인지 체크합니다.
+      if (axios.isAxiosError(error) && error.response) {
+        const errors = error.response.data;
+        if (errors["username"]) {
+          form.setError("username", {message: errors["username"]});
+        }
+        if (errors["password"]) {
+          form.setError("password", {message: errors["password"]});
+        }
+        if (errors["root"]) {
+          form.setError("root", {message: errors["root"]});
+        }
+      } else {
+        console.error("알 수 없는 에러", error);
+      }
+    }
   };
 
   return (
@@ -57,44 +84,50 @@ export default function JoinForm() {
         <CardTitle className="text-center">회원 가입</CardTitle>
       </CardHeader>
       <CardContent>
+        {/* 전역 에러 메시지 출력 */}
+        {form.formState.errors.root && (
+          <p className="text-red-500 text-center mb-4">
+            {form.formState.errors.root.message}
+          </p>
+        )}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="username"
-              render={({ field }) => (
+              render={({field}) => (
                 <FormItem>
                   <FormLabel>유저네임</FormLabel>
                   <FormControl>
                     <Input placeholder="유저네임 입력" {...field} />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage/>
                 </FormItem>
               )}
             />
             <FormField
               control={form.control}
               name="password"
-              render={({ field }) => (
+              render={({field}) => (
                 <FormItem>
                   <FormLabel>비밀번호</FormLabel>
                   <FormControl>
                     <Input type="password" placeholder="비밀번호 입력" {...field} />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage/>
                 </FormItem>
               )}
             />
             <FormField
               control={form.control}
               name="confirmPassword"
-              render={({ field }) => (
+              render={({field}) => (
                 <FormItem>
                   <FormLabel>비밀번호 확인</FormLabel>
                   <FormControl>
                     <Input type="password" placeholder="비밀번호 확인" {...field} />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage/>
                 </FormItem>
               )}
             />
