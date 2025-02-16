@@ -47,14 +47,14 @@ export default function LoginForm() {
       // AxiosError 타입인지 체크합니다.
       if (axios.isAxiosError(error) && error.response) {
         const errors = error.response.data;
-        if (errors["username"]) {
-          form.setError("username", { message: errors["username"] });
+        if (errors.username) {
+          form.setError("username", {message: errors.username});
         }
-        if (errors["password"]) {
-          form.setError("password", { message: errors["password"] });
+        if (errors.password) {
+          form.setError("password", {message: errors.password});
         }
-        if (errors["root"]) {
-          form.setError("root", { message: errors["root"] });
+        if (errors.root) {
+          form.setError("root", {message: errors.root});
         }
       } else {
         console.error("알 수 없는 에러", error);
