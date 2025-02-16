@@ -43,7 +43,7 @@ export default function LoginForm() {
     try {
       await axios.post(`/api/login`, data);
       location.href = "/";
-    } catch (error: unknown) {
+    } catch (error) {
       // AxiosError 타입인지 체크합니다.
       if (axios.isAxiosError(error) && error.response) {
         const errors = error.response.data;
