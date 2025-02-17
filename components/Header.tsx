@@ -1,5 +1,25 @@
+'use client';
 import React from "react";
 import Link from "next/link";
+import axios from "axios";
+import config from "@/config";
+
+const handleSignOut = async () => {
+  try {
+    const host = config.host;
+    const { data } = await axios.post(`${host}/api/signout`, {}, { withCredentials: true });
+    alert(data);
+    location.href = "/";
+  } catch (error) {
+    // AxiosError 타입인지 체크합니다.
+    if (axios.isAxiosError(error) && error.response) {
+      const message = error.response.data;
+      alert(message);
+    } else {
+      console.error("알 수 없는 에러", error);
+    }
+  }
+}
 
 export default function Header(){
   return (
@@ -29,6 +49,7 @@ export default function Header(){
               <li><Link href="/admin">관리자</Link></li>
               <li><Link href="/login">로그인</Link></li>
               <li><Link href="/join">회원가입</Link></li>
+              <li><a onClick={handleSignOut}>로그아웃</a></li>
             </ul>
           </div>
         </div>
