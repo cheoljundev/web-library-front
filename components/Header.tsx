@@ -1,5 +1,5 @@
 'use client';
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Link from "next/link";
 import axios from "axios";
 import config from "@/config";
@@ -7,7 +7,7 @@ import config from "@/config";
 const handleSignOut = async () => {
   try {
     const host = config.host;
-    const { data } = await axios.post(`${host}/api/signout`, {}, { withCredentials: true });
+    const {data} = await axios.post(`${host}/api/signout`, {}, {withCredentials: true});
     alert(data);
     location.href = "/";
   } catch (error) {
@@ -21,7 +21,51 @@ const handleSignOut = async () => {
   }
 }
 
-export default function Header(){
+const handleCheckUser = async () => {
+  try {
+    const host = config.host;
+    const {data} = await axios.post(`${host}/api/auth-status`, {withCredentials: true});
+    return data;
+  } catch (error) {
+    console.error("알 수 없는 에러", error);
+    return null;
+  }
+}
+
+const handleCheckAdmin = async () => {
+  try {
+    const host = config.host;
+    const {data} = await axios.post(`${host}/api/is-admin`, {withCredentials: true});
+    return data;
+  } catch (error) {
+    console.error("알 수 없는 에러", error);
+    return null;
+  }
+}
+
+export default function Header() {
+  const [isUser, setIsUser] = useState<boolean>(false);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+
+  useEffect(() => {
+    // 컴포넌트 마운트 후 사용자 상태를 비동기적으로 체크
+    const checkUser = async () => {
+      const result = await handleCheckUser();
+      // result 값에 따른 로직 처리 (예를 들어, result가 true이면 로그인 상태)
+      setIsUser(result);
+    };
+
+    // 컴포넌트 마운트 후 사용자 상태를 비동기적으로 체크
+    const checkAdmin = async () => {
+      const result = await handleCheckAdmin();
+      // result 값에 따른 로직 처리 (예를 들어, result가 true이면 관리자)
+      setIsAdmin(result);
+    };
+
+    checkUser();
+    checkAdmin();
+  }, []);
+
   return (
     <header className="sticky top-0 z-[1] bg-base-100">
       <div className="navbar mx-auto max-w-7xl">
@@ -46,10 +90,10 @@ export default function Header(){
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
               <li><Link href="/">홈</Link></li>
               <li><Link href="/books">도서 목록</Link></li>
-              <li><Link href="/admin">관리자</Link></li>
-              <li><Link href="/login">로그인</Link></li>
-              <li><Link href="/join">회원가입</Link></li>
-              <li><a onClick={handleSignOut}>로그아웃</a></li>
+              {isAdmin && <li><Link href="/admin">관리자</Link></li>}
+              {!isUser && <li><Link href="/login">로그인</Link></li>}
+              {!isUser && <li><Link href="/join">회원가입</Link></li>}
+              {isUser && <li><a onClick={handleSignOut}>로그아웃</a></li>}
             </ul>
           </div>
         </div>
