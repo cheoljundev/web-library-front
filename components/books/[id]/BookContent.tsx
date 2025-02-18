@@ -13,7 +13,6 @@ export default function BookContent(book : Book) {
     const host = config.host;
     try {
       const { data } = await axios.post(`${host}/api/books/${book.id}/rent`, {}, {withCredentials: true});
-      console.log(data)
       alert(data);
     } catch (e) {
       if (axios.isAxiosError(e) && e.response) {
@@ -28,7 +27,6 @@ export default function BookContent(book : Book) {
     const host = config.host;
     try {
       const { data } = await axios.post(`${host}/api/books/${book.id}/return`, {}, {withCredentials: true});
-      console.log(data)
       alert(data);
     } catch (e) {
       if (axios.isAxiosError(e) && e.response) {
