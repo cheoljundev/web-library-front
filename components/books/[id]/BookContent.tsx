@@ -1,9 +1,44 @@
+'use client'
+
 import {AspectRatio} from "@/components/ui/aspect-ratio";
 import Image from "next/image";
 import {Button} from "@/components/ui/button";
 import {Book} from "@/types/Book";
+import config from "@/config";
+import axios from "axios";
 
 export default function BookContent(book : Book) {
+
+  const handleRent = async () => {
+    const host = config.host;
+    try {
+      const { data } = await axios.post(`${host}/api/books/${book.id}/rent`, {}, {withCredentials: true});
+      console.log(data)
+      alert(data);
+    } catch (e) {
+      if (axios.isAxiosError(e) && e.response) {
+        alert(e.response.data);
+      } else {
+        console.error("알 수 없는 에러", e);
+      }
+    }
+  }
+
+  const handleReturn = async () => {
+    const host = config.host;
+    try {
+      const { data } = await axios.post(`${host}/api/books/${book.id}/return`, {}, {withCredentials: true});
+      console.log(data)
+      alert(data);
+    } catch (e) {
+      if (axios.isAxiosError(e) && e.response) {
+        alert(e.response.data);
+      } else {
+        console.error("알 수 없는 에러", e);
+      }
+    }
+  }
+
   return (
     <article className="grid md:grid-cols-3 gap-8">
       <section className="md:col-span-1">
@@ -23,8 +58,8 @@ export default function BookContent(book : Book) {
         <h2 className="text-2xl font-semibold mb-2">책 소개</h2>
         <p className="mb-6">{book.description}</p>
         <div className="flex space-x-4">
-          <Button>대출</Button>
-          <Button variant="outline">반납</Button>
+          <Button onClick={handleRent}>대출</Button>
+          <Button onClick={handleReturn} variant="outline">반납</Button>
         </div>
       </section>
     </article>
