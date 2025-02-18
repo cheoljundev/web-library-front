@@ -7,10 +7,11 @@ import {Book} from "@/types/Book";
 import config from "@/config";
 import axios from "axios";
 
+const host = config.host;
+
 export default function BookContent(book : Book) {
 
   const handleRent = async () => {
-    const host = config.host;
     try {
       const { data } = await axios.post(`${host}/api/books/${book.id}/rent`, {}, {withCredentials: true});
       alert(data);
@@ -24,7 +25,6 @@ export default function BookContent(book : Book) {
   }
 
   const handleReturn = async () => {
-    const host = config.host;
     try {
       const { data } = await axios.post(`${host}/api/books/${book.id}/return`, {}, {withCredentials: true});
       alert(data);
