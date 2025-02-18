@@ -17,7 +17,7 @@ export default function BookCard({ book, admin }: { book: Book, admin:boolean })
         <CardTitle>{book.bookName}</CardTitle>
         <CardDescription>저자 : {book.author}</CardDescription>
         <CardDescription>isbn : {book.isbn}</CardDescription>
-        <CardDescription>{book.description}</CardDescription>
+        <CardDescription className="line-clamp-4">{book.description}</CardDescription>
       </CardContent>
       <CardFooter className="flex justify-start sm:justify-between md:justify-start lg:justify-between gap-2">
         <Button asChild>
