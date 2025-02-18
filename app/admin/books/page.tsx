@@ -2,7 +2,6 @@ import BooksClient from "@/components/books/BooksClient";
 import config from "@/config";
 import axios from "axios";
 import {Book} from "@/types/Book";
-import {notFound} from "next/navigation";
 import {Page} from "@/types/Pagination";
 
 interface BooksPageProps {
@@ -27,8 +26,8 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
         <BooksClient page={bookPage} admin={true} query={query}/>
       </article>
     )
-  } catch (e) {
-    notFound();
+  } catch {
+    throw new Error("Internal Server Error");
   }
 }
 

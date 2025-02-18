@@ -72,6 +72,9 @@ export default function JoinForm() {
         if (errors.root) {
           form.setError("root", {message: errors.root});
         }
+        if (error.response.status === 500) {
+          form.setError("root", {message: "서버에 문제가 발생했습니다. 관리자에게 문의해주세요."});
+        }
       } else {
         console.error("알 수 없는 에러", error);
       }

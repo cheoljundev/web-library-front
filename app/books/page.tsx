@@ -27,8 +27,8 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
       <BooksClient page={bookPage} admin={false} query={query} />
     </main>
   )
-  } catch (e) {
-    notFound();
+  } catch {
+    throw new Error("Internal Server Error");
   }
 
 }

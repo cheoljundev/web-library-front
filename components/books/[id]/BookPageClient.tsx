@@ -11,6 +11,7 @@ export default function BookPageClient({id}: { id: string }) {
   const host = config.host;
   const [book, setBook] = useState<Book | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -18,7 +19,7 @@ export default function BookPageClient({id}: { id: string }) {
         const {data} = await axios.get(`${host}/api/books/${id}`);
         setBook(data);
       } catch {
-        setBook(null);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -30,7 +31,9 @@ export default function BookPageClient({id}: { id: string }) {
     return BookPageLoading();
   }
 
-  if (!book) {
+  if (error) {
+    throw new Error("Internal Server Error");
+  }else if (!book) {
     return notFound();
   }
 
