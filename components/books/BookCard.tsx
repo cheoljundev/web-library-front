@@ -24,7 +24,9 @@ export default function BookCard({ book, admin }: { book: Book, admin:boolean })
           <Link href={`/books/${book.id}`}>자세히</Link>
         </Button>
         {admin && (
-          <Button variant="outline">수정</Button>
+          <Button asChild variant="outline">
+            <Link href={`/admin/books/modify/${book.id}`}>수정</Link>
+          </Button>
         )}
       </CardFooter>
     </Card>
