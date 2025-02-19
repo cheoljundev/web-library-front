@@ -90,7 +90,7 @@ export default function Header() {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
               <li><Link href="/">홈</Link></li>
               <li><Link href="/books">도서 목록</Link></li>
-              {isAdmin && <li><Link href="/admin">관리자</Link></li>}
+              {isAdmin && <li><Link href="/admin/books">관리자</Link></li>}
               {!isUser && <li><Link href="/login">로그인</Link></li>}
               {!isUser && <li><Link href="/join">회원가입</Link></li>}
               {isUser && <li><a onClick={handleSignOut}>로그아웃</a></li>}
