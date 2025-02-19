@@ -40,7 +40,7 @@ export default function BookContent(book : Book) {
   return (
     <article className="grid md:grid-cols-3 gap-8">
       <section className="md:col-span-1">
-        <AspectRatio ratio={3 / 4}>
+        <AspectRatio ratio={4 / 6}>
           <Image
             src={book.coverImage}
             alt={`${book.bookName} 표지`}
