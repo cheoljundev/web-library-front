@@ -189,7 +189,7 @@ export default function AddBookForm() {
             <img
               src={coverImagePreview}
               alt="책 표지 미리보기"
-              className="max-w-xs border rounded"
+              className="max-w-xs border rounded max-h-[200px]"
             />
           </div>
         )}
