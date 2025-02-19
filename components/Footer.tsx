@@ -13,26 +13,25 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">링크</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/terms" className="text-gray-400 hover:text-white">
-                  이용약관
+                <Link href="https://devcj.kr/web-library" className="text-gray-400 hover:text-white">
+                  프로젝트 소개
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="text-gray-400 hover:text-white">
-                  개인정보처리방침
+                <Link href="https://github.com/cheoljundev/web-library" className="text-gray-400 hover:text-white">
+                  GitHub
                 </Link>
               </li>
               <li>
-                <Link href="/qna" className="text-gray-400 hover:text-white">
-                  자주 묻는 질문
+                <Link href="https://devcj.kr" className="text-gray-400 hover:text-white">
+                  Blog
                 </Link>
               </li>
             </ul>
           </div>
           <div>
             <h3 className="text-lg font-semibold mb-4">연락처</h3>
-            <p className="text-gray-400">이메일: info@onlinelibrary.com</p>
-            <p className="text-gray-400">전화: 02-1234-5678</p>
+            <p className="text-gray-400"><a href="mailto:cheoljundev@gmail.com">cheoljundev@gmail.com</a></p>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
