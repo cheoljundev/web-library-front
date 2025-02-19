@@ -1,4 +1,14 @@
+'use client'
+
 import Link from "next/link"
+import {Github, LibraryBig, FileText} from "lucide-react";
+
+const links = [
+  {href: 'https://devcj.kr/web-library', label: '프로젝트 소개', icon: LibraryBig},
+  {href: 'https://github.com/cheoljundev/web-library-front', label: '프론트엔드', icon: Github},
+  {href: 'https://github.com/cheoljundev/web-library', label: '백엔드', icon: Github},
+  {href: 'https://devcj.kr', label: 'Blog', icon: FileText},
+]
 
 export default function Footer() {
   return (
@@ -12,21 +22,15 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">링크</h3>
             <ul className="space-y-2">
-              <li>
-                <Link href="https://devcj.kr/web-library" className="text-gray-400 hover:text-white">
-                  프로젝트 소개
-                </Link>
-              </li>
-              <li>
-                <Link href="https://github.com/cheoljundev/web-library" className="text-gray-400 hover:text-white">
-                  GitHub
-                </Link>
-              </li>
-              <li>
-                <Link href="https://devcj.kr" className="text-gray-400 hover:text-white">
-                  Blog
-                </Link>
-              </li>
+              {
+                links.map((link, index) => (
+                  <li key={index}>
+                    <Link href={link.href} target="_blank" className="text-gray-400 hover:text-white flex items-center gap-x-1">
+                      <link.icon className="w-[1em] h-[1em]" /> {link.label}
+                    </Link>
+                  </li>
+                ))
+              }
             </ul>
           </div>
           <div>
