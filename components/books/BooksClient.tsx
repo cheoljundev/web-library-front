@@ -27,7 +27,7 @@ export default function BooksClient({ page, admin, query }: BooksClientProps) {
       <div className="mt-12">
         <h2 className="text-2xl font-semibold mb-4">검색 결과</h2>
         <BookList books={books} admin={admin}/>
-        <Pagination page={page}/>
+        <Pagination page={page} query={query}/>
       </div>
     </>
   )

@@ -23,7 +23,12 @@ function onDelete(id: number) {
   console.log("삭제 클릭", id);
 }
 
-export default function UsersTable({ page }: { page: Page<User> }) {
+interface UserSearchFormProps {
+  page: Page<User>;
+  query: { username: string; role: string };
+}
+
+export default function UsersTable({ page, query }: UserSearchFormProps) {
   const [users] = useState<User[]>(page.content);
   return (
     <>
@@ -66,7 +71,7 @@ export default function UsersTable({ page }: { page: Page<User> }) {
           </TableBody>
         </Table>
       </div>
-      <Pagination page={page} />
+      <Pagination page={page} query={query} />
     </>
   );
 }
