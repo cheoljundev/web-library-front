@@ -8,8 +8,6 @@ export async function GET(request : Request) {
   const url = config.apiUrl;
   const cookie = request.headers.get('cookie') || '';
 
-  console.log('/api/users/roles cookie: ',cookie); // 비어 있다.
-
   try {
     const response = await axios.get(`${url}/users/roles`, {headers : {cookie}});
 

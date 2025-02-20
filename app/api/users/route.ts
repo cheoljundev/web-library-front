@@ -12,7 +12,6 @@ const users: User[] = [
 export async function GET(request: Request) {
   const cookie = request.headers.get('cookie') || '';
 
-  console.log('/api/users/ cookie: ',cookie); // 비어 있다.
   const {searchParams} = new URL(request.url);
   const page = searchParams.get("page"); // query string의 page 값을 가져옵니다.
   const currentPage: number = page ? parseInt(page, 10) - 1 : 0;
