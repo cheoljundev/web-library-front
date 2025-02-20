@@ -3,3 +3,8 @@ export type User = {
   username: string
   roles: string[]
 }
+
+export type Role = {
+  name : string,
+  description : string
+}

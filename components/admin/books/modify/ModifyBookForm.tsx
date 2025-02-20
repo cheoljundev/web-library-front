@@ -58,7 +58,7 @@ export default function ModifyBookForm({book} : {book: Book}) {
     formData.append("coverImage", coverImageFile);
 
     try {
-      const {data} = await axios.put(`${host}/api/books/${book.id}`, formData, { withCredentials: true });
+      const {data} = await axios.put(`${host}/api/books/${book.id}`, formData);
       alert(data)
       location.href = "/admin/books";
     } catch (error) {

@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import {Role} from "@/types/User";
 
 const searchFormSchema = z.object({
   username: z.string(),
@@ -24,9 +25,10 @@ export type SearchFormValues = z.infer<typeof searchFormSchema>;
 
 interface UserSearchFormProps {
   onSubmitAction: (data: SearchFormValues) => void;
+  roles: Role[];
 }
 
-export default function UserSearchForm({ onSubmitAction }: UserSearchFormProps) {
+export default function UserSearchForm({ onSubmitAction, roles }: UserSearchFormProps) {
   const form = useForm<SearchFormValues>({
     resolver: zodResolver(searchFormSchema),
     defaultValues: {
@@ -34,6 +36,12 @@ export default function UserSearchForm({ onSubmitAction }: UserSearchFormProps) 
       role: "DEFAULT",
     },
   });
+
+  // 선택된 역할의 description을 찾아 반환하는 헬퍼 함수
+  const getSelectedRoleDescription = (selectedRole: string) => {
+    const foundRole = roles.find(role => role.name === selectedRole);
+    return foundRole ? foundRole.description : "권한 선택";
+  };
 
   return (
     <Form {...form}>
@@ -60,10 +68,13 @@ export default function UserSearchForm({ onSubmitAction }: UserSearchFormProps) 
                 <FormLabel>권한</FormLabel>
                 <FormControl>
                   <Select onValueChange={field.onChange} value={field.value}>
-                    <SelectTrigger>{field.value || "Select a role"}</SelectTrigger>
+                    <SelectTrigger>{getSelectedRoleDescription(field.value)}</SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="DEFAULT">DEFAULT</SelectItem>
-                      <SelectItem value="ADMIN">ADMIN</SelectItem>
+                      {
+                        roles.map((role) => (
+                          <SelectItem key={role.name} value={role.name}>{role.description}</SelectItem>
+                        ))
+                      }
                     </SelectContent>
                   </Select>
                 </FormControl>

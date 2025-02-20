@@ -3,16 +3,21 @@
 import UserSearchForm from "@/components/admin/users/UserSearchForm";
 import UsersTable from "@/components/admin/users/UsersTable";
 import {Page} from "@/types/Pagination";
-import {User} from "@/types/User";
+import {Role, User} from "@/types/User";
 
 const onSearchSubmit = async (query : {username : string, role : string}) => {
   location.href = `?username=${query.username}&role=${query.role}`;
 };
 
-export default function UsersClient({userPage} : {userPage : Page<User>}) {
+interface UsersClientProps {
+  userPage : Page<User>;
+  roles: Role[];
+}
+
+export default async function UsersClient({userPage, roles} : UsersClientProps) {
   return (
     <>
-      <UserSearchForm onSubmitAction={onSearchSubmit}/>
+      <UserSearchForm roles={roles} onSubmitAction={onSearchSubmit}/>
       <UsersTable page={userPage}/>
     </>
   );

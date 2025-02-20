@@ -7,7 +7,7 @@ import config from "@/config";
 const handleSignOut = async () => {
   try {
     const host = config.host;
-    const {data} = await axios.post(`${host}/api/signout`, {}, {withCredentials: true});
+    const {data} = await axios.post(`${host}/api/signout`);
     alert(data);
     location.href = "/";
   } catch (error) {
@@ -24,7 +24,7 @@ const handleSignOut = async () => {
 const handleCheckUser = async () => {
   try {
     const host = config.host;
-    const {data} = await axios.post(`${host}/api/auth-status`, {withCredentials: true});
+    const {data} = await axios.post(`${host}/api/auth-status`);
     return data;
   } catch (error) {
     console.error("알 수 없는 에러", error);
@@ -35,7 +35,7 @@ const handleCheckUser = async () => {
 const handleCheckAdmin = async () => {
   try {
     const host = config.host;
-    const {data} = await axios.post(`${host}/api/is-admin`, {withCredentials: true});
+    const {data} = await axios.post(`${host}/api/is-admin`);
     return data;
   } catch (error) {
     console.error("알 수 없는 에러", error);

@@ -3,7 +3,7 @@ import axios from "axios";
 import config from "@/config";
 import {Book} from "@/types/Book";
 
-export async function GET({params}: { params: Promise<{ id: string }> }) {
+export async function GET(request: Request, {params}: { params: Promise<{ id: string }> }) {
   const apiUrl = config.apiUrl;
   const {id} = await params;
   try {

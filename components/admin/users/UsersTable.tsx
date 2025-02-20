@@ -45,7 +45,7 @@ export default function UsersTable({ page }: { page: Page<User> }) {
                   <TableCell className="px-4 py-2">
                     <div className="flex gap-2">
                       <Button variant="outline" onClick={() => onEdit(user.id)}>
-                        수정
+                        권한 변경
                       </Button>
                       <Button variant="destructive" onClick={() => onDelete(user.id)}>
                         삭제

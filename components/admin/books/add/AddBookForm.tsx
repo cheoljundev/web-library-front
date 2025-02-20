@@ -54,7 +54,7 @@ export default function AddBookForm() {
     formData.append("coverImage", coverImageFile);
 
     try {
-      const {data} = await axios.post(`${host}/api/books/add`, formData, { withCredentials: true });
+      const {data} = await axios.post(`${host}/api/books/add`, formData);
       alert(data)
       location.href = "/admin/books";
     } catch (error) {

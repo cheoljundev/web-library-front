@@ -9,6 +9,9 @@ export async function POST(request: Request) {
 
     const cookie = request.headers.get('cookie') || '';
 
+    console.log('/api/auth-status cookie: ',cookie); // 비어 있다.
+
+
     const axiosResponse = await axios.post(`${apiUrl}/auth-status`,
       {},
       { headers: { cookie } }
