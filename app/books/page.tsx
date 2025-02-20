@@ -2,7 +2,6 @@ import BooksClient from "@/components/books/BooksClient"
 import axios from "axios";
 import {Page} from "@/types/Pagination";
 import {Book} from "@/types/Book";
-import {notFound} from "next/navigation";
 import config from "@/config";
 
 interface BooksPageProps {

@@ -28,11 +28,11 @@ export async function middleware(request: NextRequest) {
       });
 
       if (!isAdmin) {
-        return NextResponse.redirect(new URL('/login', request.url));
+        return NextResponse.redirect(new URL('/not-found', request.url));
       }
-    } catch (error) {
+    } catch {
       // API 호출 실패 시 접근 제한 또는 에러 페이지로 처리
-      return NextResponse.redirect(new URL('/login', request.url));
+      return NextResponse.redirect(new URL('/not-found', request.url));
     }
   }
 
