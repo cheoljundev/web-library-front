@@ -18,7 +18,7 @@ import {Role} from "@/types/User";
 
 const searchFormSchema = z.object({
   username: z.string(),
-  role: z.enum(["DEFAULT", "ADMIN"]),
+  role: z.string(),
 });
 
 export type SearchFormValues = z.infer<typeof searchFormSchema>;
@@ -26,14 +26,15 @@ export type SearchFormValues = z.infer<typeof searchFormSchema>;
 interface UserSearchFormProps {
   onSubmitAction: (data: SearchFormValues) => void;
   roles: Role[];
+  query: { username: string; role: string };
 }
 
-export default function UserSearchForm({ onSubmitAction, roles }: UserSearchFormProps) {
+export default function UserSearchForm({ onSubmitAction, roles, query }: UserSearchFormProps) {
   const form = useForm<SearchFormValues>({
     resolver: zodResolver(searchFormSchema),
     defaultValues: {
-      username: "",
-      role: "DEFAULT",
+      username: query.username,
+      role: query.role,
     },
   });
 

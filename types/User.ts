@@ -1,7 +1,7 @@
 export type User = {
   id: number
   username: string
-  roles: string[]
+  roles: Role[]
 }
 
 export type Role = {

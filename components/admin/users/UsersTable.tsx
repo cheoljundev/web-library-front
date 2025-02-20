@@ -41,7 +41,9 @@ export default function UsersTable({ page }: { page: Page<User> }) {
               users.map((user) => (
                 <TableRow key={user.id}>
                   <TableCell className="px-4 py-2">{user.username}</TableCell>
-                  <TableCell className="px-4 py-2">{user.roles.join(", ")}</TableCell>
+                  <TableCell className="px-4 py-2">{
+                    user.roles.map((role) => role.description).join(', ')
+                  }</TableCell>
                   <TableCell className="px-4 py-2">
                     <div className="flex gap-2">
                       <Button variant="outline" onClick={() => onEdit(user.id)}>

@@ -12,12 +12,13 @@ const onSearchSubmit = async (query : {username : string, role : string}) => {
 interface UsersClientProps {
   userPage : Page<User>;
   roles: Role[];
+  query: {username: string, role: string};
 }
 
-export default async function UsersClient({userPage, roles} : UsersClientProps) {
+export default async function UsersClient({userPage, roles, query} : UsersClientProps) {
   return (
     <>
-      <UserSearchForm roles={roles} onSubmitAction={onSearchSubmit}/>
+      <UserSearchForm roles={roles} onSubmitAction={onSearchSubmit} query={query}/>
       <UsersTable page={userPage}/>
     </>
   );
