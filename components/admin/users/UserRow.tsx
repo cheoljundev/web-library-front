@@ -15,15 +15,10 @@ import {Checkbox} from "@/components/ui/checkbox";
 import {useState} from "react";
 import axios from "axios";
 
-const onDelete = (id: number) => {
-  console.log("삭제 클릭", id);
-}
-
 export default function UserRow({user, roles}: { user: User, roles: Role[] }) {
   const initialRoles = user.roles.map((role) => role.name);
 
   const [selectedRoles, setSelectedRoles] = useState<string[]>(initialRoles);
-
 
   const handleCheckboxChange = (roleName: string) => {
     setSelectedRoles((prev) =>
@@ -50,6 +45,22 @@ export default function UserRow({user, roles}: { user: User, roles: Role[] }) {
         alert(e.response.data);
       } else {
         alert('알 수 없는 에러 발생');
+      }
+    }
+  }
+
+  const handleDelete = async () => {
+    if (confirm('정말 삭제하시겠습니까?')) {
+      try {
+        const {data} = await axios.delete(`/api/users/${user.id}`);
+        alert(data);
+        location.reload();
+      } catch (e) {
+        if (axios.isAxiosError(e) && e.response) {
+          alert(e.response.data);
+        } else {
+          alert('알 수 없는 에러 발생');
+        }
       }
     }
   }
@@ -91,7 +102,7 @@ export default function UserRow({user, roles}: { user: User, roles: Role[] }) {
             </DialogFooter>
           </DialogContent>
         </Dialog>
-        <Button variant="destructive" onClick={() => onDelete(user.id)}>
+        <Button variant="destructive" onClick={handleDelete}>
           삭제
         </Button>
       </div>

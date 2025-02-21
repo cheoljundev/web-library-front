@@ -3,14 +3,13 @@ import axios from "axios";
 import config from "@/config";
 
 
-export async function PUT(request : Request, {params}: { params: Promise<{ id: string }> }) {
+export async function DELETE(request: Request, {params}: { params: Promise<{ id: string }> }) {
   const {id} = await params;
-  const {roles} = await request.json();
   const url = config.apiUrl;
   const cookie = request.headers.get('cookie') || '';
 
   try {
-    const response = await axios.put(`${url}/users/${id}/roles`, roles,{headers : {cookie}});
+    const response = await axios.delete(`${url}/users/${id}`, {headers: {cookie}});
 
     const {data} = response;
 
