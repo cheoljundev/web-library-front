@@ -19,7 +19,7 @@ export default async function UsersClient({userPage, roles, query} : UsersClient
   return (
     <>
       <UserSearchForm roles={roles} onSubmitAction={onSearchSubmit} query={query}/>
-      <UsersTable page={userPage} query={query}/>
+      <UsersTable roles={roles} page={userPage} query={query}/>
     </>
   );
 }

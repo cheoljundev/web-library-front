@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableHeader,
@@ -10,25 +9,18 @@ import {
   TableBody,
 } from "@/components/ui/table";
 import {Page} from "@/types/Pagination";
-import {User} from "@/types/User";
+import {Role, User} from "@/types/User";
 import Pagination from "@/components/Pagination";
 import {useState} from "react";
-
-
-function onEdit(id: number) {
-  console.log("수정 클릭", id);
-}
-
-function onDelete(id: number) {
-  console.log("삭제 클릭", id);
-}
+import UserRow from "@/components/admin/users/UserRow";
 
 interface UserSearchFormProps {
   page: Page<User>;
   query: { username: string; role: string };
+  roles: Role[];
 }
 
-export default function UsersTable({ page, query }: UserSearchFormProps) {
+export default function UsersTable({ roles, page, query }: UserSearchFormProps) {
   const [users] = useState<User[]>(page.content);
   return (
     <>
@@ -43,23 +35,8 @@ export default function UsersTable({ page, query }: UserSearchFormProps) {
           </TableHeader>
           <TableBody>
             {users.length > 0 ? (
-              users.map((user) => (
-                <TableRow key={user.id}>
-                  <TableCell className="px-4 py-2">{user.username}</TableCell>
-                  <TableCell className="px-4 py-2">{
-                    user.roles.map((role) => role.description).join(', ')
-                  }</TableCell>
-                  <TableCell className="px-4 py-2">
-                    <div className="flex gap-2">
-                      <Button variant="outline" onClick={() => onEdit(user.id)}>
-                        권한 변경
-                      </Button>
-                      <Button variant="destructive" onClick={() => onDelete(user.id)}>
-                        삭제
-                      </Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
+              users.map((user) =>(
+                <UserRow key={user.id} user={user} roles={roles} />
               ))
             ) : (
               <TableRow>
