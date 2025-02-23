@@ -4,10 +4,7 @@ import UserSearchForm from "@/components/admin/users/UserSearchForm";
 import UsersTable from "@/components/admin/users/UsersTable";
 import {Page} from "@/types/Pagination";
 import {Role, User} from "@/types/User";
-
-const onSearchSubmit = async (query : {username : string, role : string}) => {
-  location.href = `?username=${query.username}&role=${query.role}`;
-};
+import {onSearchSubmit} from "@/utils";
 
 interface UsersClientProps {
   userPage : Page<User>;

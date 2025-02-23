@@ -20,3 +20,13 @@ export const createHref = (pageNumber: number, query: { [key: string]: string | 
   params.set("page", pageNumber.toString());
   return `?${params.toString()}`;
 };
+
+export const onSearchSubmit = async (query: { [key: string]: string | undefined }) => {
+  const params = new URLSearchParams();
+  Object.entries(query).forEach(([key, value]) => {
+    if (value !== undefined) {
+      params.set(key, value);
+    }
+  });
+  location.href = `?${params.toString()}`;
+};

@@ -8,7 +8,7 @@ import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/
 import {Input} from "@/components/ui/input";
 
 interface SearchFormProps {
-  onSearch: (query: z.infer<typeof schema>) => void,
+  onSearchSubmit: (query: z.infer<typeof schema>) => void,
   query: { bookName: string; isbn: string; author: string }
 
 }
@@ -19,7 +19,7 @@ const schema = z.object({
   author: z.string(),
 });
 
-export default function BookSearchForm({onSearch, query}: SearchFormProps) {
+export default function BookSearchForm({onSearchSubmit, query}: SearchFormProps) {
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
@@ -31,7 +31,7 @@ export default function BookSearchForm({onSearch, query}: SearchFormProps) {
   });
 
   function onSubmit(values: z.infer<typeof schema>) {
-    onSearch(values);
+    onSearchSubmit(values);
   }
 
   return (
