@@ -28,7 +28,7 @@ export default function UsersTable({ roles, page, query }: UserSearchFormProps) 
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="px-4 py-2 text-left">Username</TableHead>
+              <TableHead className="px-4 py-2 text-left">유저네임</TableHead>
               <TableHead className="px-4 py-2 text-left">권한</TableHead>
               <TableHead className="px-4 py-2 text-left"></TableHead>
             </TableRow>

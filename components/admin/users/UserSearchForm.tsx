@@ -53,9 +53,9 @@ export default function UserSearchForm({ onSubmitAction, roles, query }: UserSea
             name="username"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Username</FormLabel>
+                <FormLabel>유저네임</FormLabel>
                 <FormControl>
-                  <Input placeholder="username" {...field} />
+                  <Input placeholder="유저네임" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
