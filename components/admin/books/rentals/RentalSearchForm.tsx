@@ -25,12 +25,12 @@ const searchFormSchema = z.object({
 
 export type SearchFormValues = z.infer<typeof searchFormSchema>;
 
-interface UserSearchFormProps {
+interface RentalSearchFormProps {
   onSubmitAction: (data: SearchFormValues) => void;
   query: { username: string, bookName: string, isbn: string, author: string, returned: string };
 }
 
-export default function RentalSearchForm({onSubmitAction, query}: UserSearchFormProps) {
+export default function RentalSearchForm({onSubmitAction, query}: RentalSearchFormProps) {
   const form = useForm<SearchFormValues>({
     resolver: zodResolver(searchFormSchema),
     defaultValues: {
