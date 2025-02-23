@@ -34,6 +34,14 @@ export default function AdminAside() {
               유저 관리
             </NavigationMenuLink>
           </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              href="/admin/books/rentals"
+              className="p-2 rounded-md hover:bg-primary/10"
+            >
+              대출 관리
+            </NavigationMenuLink>
+          </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
     </nav>

@@ -40,10 +40,13 @@ export default ({ page, query }: PaginationProps) => {
         )}
         <PaginationItem>
           <PaginationLink
-            isActive={page.totalPages === page.currentPage}
+            isActive={
+            page.totalPages === 0 ? true :
+            page.totalPages === page.currentPage
+          }
             href={createHref(page.totalPages, query)}
           >
-            {page.totalPages}
+            {page.totalPages === 0 ? 1 : page.totalPages}
           </PaginationLink>
         </PaginationItem>
         {page.last ? null : (
