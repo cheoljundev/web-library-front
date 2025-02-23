@@ -12,7 +12,7 @@ import {Page} from "@/types/Pagination";
 import Pagination from "@/components/Pagination";
 import {useState} from "react";
 import {Rental} from "@/types/Book";
-import RentalRow from "@/components/admin/rentals/RentalRow";
+import RentalRow from "@/components/admin/books/rentals/RentalRow";
 
 interface RentalSearchFormProps {
   page: Page<Rental>;

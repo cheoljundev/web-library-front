@@ -3,7 +3,7 @@ import axios from "axios";
 import {Page} from "@/types/Pagination";
 import {notFound} from "next/navigation";
 import {headers} from "next/headers";
-import RentalsClient from "@/components/admin/rentals/RentalsClient";
+import RentalsClient from "@/components/admin/books/rentals/RentalsClient";
 import {Rental} from "@/types/Book";
 import {createHref} from "@/utils";
 
