@@ -3,7 +3,7 @@ import config from "@/config";
 import axios from "axios";
 import {Page} from "@/types/Pagination";
 import {notFound} from "next/navigation";
-import UsersManagementClient from "@/components/admin/users/UsersClient";
+import UsersClient from "@/components/admin/users/UsersClient";
 import {headers} from "next/headers";
 
 interface UsersPageProps {
@@ -31,7 +31,7 @@ export default async function UserManagementPage({searchParams}: UsersPageProps)
     return (
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         <h1 className="text-2xl font-bold mb-4">유저 관리</h1>
-        <UsersManagementClient userPage={userPage} roles={roles} query={query}/>
+        <UsersClient userPage={userPage} roles={roles} query={query}/>
       </div>
     );
   } catch {
