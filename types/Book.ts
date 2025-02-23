@@ -1,8 +1,7 @@
 import {User} from "@/types/User";
-import {z} from "zod";
 
 export type Book = {
-  id: string
+  id: number
   bookName: string
   isbn: string
   author: string
@@ -11,7 +10,7 @@ export type Book = {
 };
 
 export type Rental = {
-  id: string
+  id: number
   book: Book
   user: User
   rentedAt: string
