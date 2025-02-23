@@ -93,6 +93,7 @@ export default function Header() {
               {isAdmin && <li><Link href="/admin/books">관리자</Link></li>}
               {!isUser && <li><Link href="/login">로그인</Link></li>}
               {!isUser && <li><Link href="/join">회원가입</Link></li>}
+              {isUser && <li><Link href="/mypage">마이페이지</Link></li>}
               {isUser && <li><a onClick={handleSignOut}>로그아웃</a></li>}
             </ul>
           </div>
