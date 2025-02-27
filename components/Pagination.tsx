@@ -1,20 +1,22 @@
+import React, {JSX} from 'react';
 import {
   Pagination,
   PaginationContent,
   PaginationEllipsis,
   PaginationItem,
-  PaginationLink, PaginationNext,
+  PaginationLink,
+  PaginationNext,
   PaginationPrevious
 } from "@/components/ui/pagination";
-import {Page} from "@/types/Pagination";
-import {createHref} from "@/utils";
+import { Page } from "@/types/Pagination";
+import { createHref } from "@/utils";
 
-interface PaginationProps {
-  page: Page<any>;
+interface PaginationProps<T> {
+  page: Page<T>;
   query: { [key: string]: string | undefined };
 }
 
-export default ({ page, query }: PaginationProps) => {
+const PaginationComponent = <T,>({ page, query }: PaginationProps<T>): JSX.Element => {
   return (
     <Pagination className="my-10">
       <PaginationContent>
@@ -40,10 +42,7 @@ export default ({ page, query }: PaginationProps) => {
         )}
         <PaginationItem>
           <PaginationLink
-            isActive={
-            page.totalPages === 0 ? true :
-            page.totalPages === page.currentPage
-          }
+            isActive={page.totalPages === 0 ? true : page.totalPages === page.currentPage}
             href={createHref(page.totalPages, query)}
           >
             {page.totalPages === 0 ? 1 : page.totalPages}
@@ -58,3 +57,7 @@ export default ({ page, query }: PaginationProps) => {
     </Pagination>
   );
 };
+
+PaginationComponent.displayName = "PaginationComponent";
+
+export default PaginationComponent;

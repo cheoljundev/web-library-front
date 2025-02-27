@@ -9,7 +9,7 @@ import MyPageDashboard from "@/components/mypage/MyPageDashboard";
 import {User} from "@/types/User";
 
 interface MyPageProps {
-  searchParams: { [key: string]: string | undefined };
+  searchParams: Promise<{ [key: string]: string | undefined }>;
 }
 
 export default async function MyPage({searchParams}: MyPageProps) {

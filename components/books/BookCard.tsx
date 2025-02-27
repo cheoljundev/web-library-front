@@ -6,6 +6,7 @@ import Link from "next/link";
 import {Book} from "@/types/Book";
 import axios from "axios";
 import config from "@/config";
+import Image from "next/image";
 
 export default function BookCard({ book, admin }: { book: Book, admin:boolean }) {
   const {host} = config;
@@ -32,10 +33,12 @@ export default function BookCard({ book, admin }: { book: Book, admin:boolean })
   return (
     <Card className="block sm:flex md:block lg:flex items-center justify-around p-4">
       <CardHeader className="flex-row">
-        <img
+        <Image
           src={book.coverImage}
           alt={`Cover of ${book.bookName}`}
-          className="max-h-[150px]"
+          width={200}         // 원본 이미지의 너비 (예시)
+          height={150}        // 원본 이미지의 높이 (예시)
+          layout="responsive" // 반응형 이미지 레이아웃 사용
         />
       </CardHeader>
       <CardContent className="lg:w-[300px]">

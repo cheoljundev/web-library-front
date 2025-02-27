@@ -7,7 +7,7 @@ import UsersClient from "@/components/admin/users/UsersClient";
 import {headers} from "next/headers";
 
 interface UsersPageProps {
-  searchParams: { [key: string]: string | undefined };
+  searchParams: Promise<{ [key: string]: string | undefined }>;
 }
 
 export default async function UserManagementPage({searchParams}: UsersPageProps) {

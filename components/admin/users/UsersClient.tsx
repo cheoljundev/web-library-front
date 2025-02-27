@@ -12,7 +12,7 @@ interface UsersClientProps {
   query: {username: string, role: string};
 }
 
-export default async function UsersClient({userPage, roles, query} : UsersClientProps) {
+export default function UsersClient({userPage, roles, query} : UsersClientProps) {
   return (
     <>
       <UserSearchForm roles={roles} onSubmitAction={onSearchSubmit} query={query}/>

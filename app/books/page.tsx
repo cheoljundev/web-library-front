@@ -5,7 +5,7 @@ import {Book} from "@/types/Book";
 import config from "@/config";
 
 interface BooksPageProps {
-  searchParams: { [key: string]: string | undefined };
+  searchParams: Promise<{ [key: string]: string | undefined }>;
 }
 
 export default async function BooksPage({ searchParams }: BooksPageProps) {

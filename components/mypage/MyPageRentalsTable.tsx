@@ -12,7 +12,6 @@ import {Page} from "@/types/Pagination";
 import Pagination from "@/components/Pagination";
 import {useState} from "react";
 import {Rental} from "@/types/Book";
-import RentalRow from "@/components/admin/books/rentals/RentalRow";
 import MyPageRentalRow from "@/components/mypage/MyPageRentalRow";
 
 interface RentalSearchFormProps {

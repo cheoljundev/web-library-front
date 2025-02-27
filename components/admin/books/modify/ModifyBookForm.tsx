@@ -18,6 +18,7 @@ import {Textarea} from "@/components/ui/textarea";
 import axios from "axios";
 import config from "@/config";
 import {Book} from "@/types/Book";
+import Image from "next/image";
 
 const schema = z.object({
   id: z.string().min(1, "잘못된 접근입니다."),
@@ -210,10 +211,13 @@ export default function ModifyBookForm({book} : {book: Book}) {
         />
         {coverImagePreview && (
           <div className="mt-4">
-            <img
+            <Image
               src={coverImagePreview}
               alt="책 표지 미리보기"
-              className="max-w-xs border rounded max-h-[200px]"
+              width={400} // 적절한 width 값으로 수정
+              height={200} // 적절한 height 값으로 수정
+              layout="responsive"
+              className="max-w-xs border rounded"
             />
           </div>
         )}

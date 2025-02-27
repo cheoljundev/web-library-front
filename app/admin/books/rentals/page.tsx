@@ -8,7 +8,7 @@ import {Rental} from "@/types/Book";
 import {createHref} from "@/utils";
 
 interface UsersPageProps {
-  searchParams: { [key: string]: string | undefined };
+  searchParams: Promise<{ [key: string]: string | undefined }>;
 }
 
 export default async function UserManagementPage({searchParams}: UsersPageProps) {

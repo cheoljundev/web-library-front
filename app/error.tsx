@@ -8,7 +8,7 @@ interface ErrorProps {
   reset: () => void;
 }
 
-export default function Error({ error, reset }: ErrorProps) {
+export default function Error({ reset }: ErrorProps) {
   return (
     <div className="container mx-auto px-4 py-16 text-center">
       <h2 className="text-3xl font-bold mb-4">Error - 500</h2>
