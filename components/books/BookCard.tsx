@@ -11,7 +11,7 @@ import Image from "next/image";
 export default function BookCard({ book, admin }: { book: Book, admin:boolean }) {
   const {host} = config;
   async function handleDelete() {
-    if (confirm("정말 삭제하시겠습니까?")) {
+    if (confirm("정말 삭제하시겠습니까?!")) {
       try {
         await axios.delete(`${host}/api/books/${book.id}`);
         location.reload();
